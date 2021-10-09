@@ -1,5 +1,6 @@
 import datetime
 import os
+import io
 import socket
 
 import telethon
@@ -15,12 +16,14 @@ client = telethon.TelegramClient(
 
 
 @client.on(telethon.events.NewMessage(pattern=f"^/screen {hostname}$"))
-def send_screenshot(event: telethon.events.NewMessage.Event):
-    screenshot = ImageGrab.grab().save(bytearray(), "PNG")
-    client.send_file(
-        screenshot,
+async def send_screenshot(event: telethon.events.NewMessage.Event):
+    storage = io.BytesIO()
+    ImageGrab.grab().save(storage, "PNG")
+    await client.send_file(
+        event.chat_id,
+        storage.getvalue(),
         reply_to=event.message.id,
-        caption=f"📺 {hostname}\n 🕒 {datetime.datetime.now()}",
+        caption=f"📺 `{hostname}`\n🕒 {datetime.datetime.now()}",
     )
 
 
