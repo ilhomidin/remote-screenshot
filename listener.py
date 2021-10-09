@@ -18,8 +18,8 @@ client = telethon.TelegramClient(
 def send_screenshot(event: telethon.events.NewMessage.Event):
     screenshot = ImageGrab.grab().save(bytearray(), "PNG")
     client.send_file(
-        event.message.to_id,
         screenshot,
+        reply_to=event.message.id,
         caption=f"📺 {hostname}\n 🕒 {datetime.datetime.now()}",
     )
 
