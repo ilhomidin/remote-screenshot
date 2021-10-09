@@ -8,9 +8,9 @@ from PIL import ImageGrab
 
 hostname = socket.gethostname()
 client = telethon.TelegramClient(
-    "screenshot",
+    telethon.sessions.MemorySession(),
     os.environ["API_ID"],
-    os.environ["API_HASH"]
+    os.environ["API_HASH"],
 ).start(bot_token=os.environ["BOT_TOKEN"])
 
 
