@@ -1,2 +1,1 @@
-# remote-screenshot
-Stupidly simple client/server application for remote screenshot creation
+**Stupidly simple way to send your pc screenshots by Telegram bot.**
