@@ -5,7 +5,10 @@ import socket
 
 import telethon
 from PIL import ImageGrab
+from dotenv import load_dotenv
 
+
+load_dotenv()
 
 hostname = socket.gethostname()
 client = telethon.TelegramClient(
