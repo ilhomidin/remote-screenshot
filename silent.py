@@ -1,11 +1,9 @@
 """
 Run remscreen without any output.
+Write stdout to the `remscreen.log` file.
 """
-from multiprocessing import Process
-
-from remscreen import client
+import subprocess
 
 
-if __name__ == '__main__':
-    p = Process(target=client.run_until_disconnected, name="remscreen", daemon=True)
-    p.start()
+with open("remscreen.log", "w") as file:
+    subprocess.Popen("python remscreen.py", stdout=file)
